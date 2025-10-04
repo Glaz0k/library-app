@@ -1,16 +1,33 @@
 import {
   pgTable,
-  foreignKey,
   check,
+  varchar,
+  foreignKey,
   integer,
   date,
   unique,
-  varchar,
   char,
   pgView,
   bigint,
+  pgEnum,
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
+
+export const userRole = pgEnum('user_role', ['user', 'admin']);
+
+export const users = pgTable(
+  'users',
+  {
+    username: varchar({ length: 20 }).primaryKey().notNull(),
+    password: varchar({ length: 255 }).notNull(),
+    role: userRole().default('user').notNull(),
+  },
+  () => [
+    check('users_username_not_null', sql`NOT NULL username`),
+    check('users_password_not_null', sql`NOT NULL password`),
+    check('users_role_not_null', sql`NOT NULL role`),
+  ]
+);
 
 export const journal = pgTable(
   'journal',
