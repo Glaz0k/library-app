@@ -1,7 +1,16 @@
 import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig: NextConfig = {};
+
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/journal',
+        destination: '/',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

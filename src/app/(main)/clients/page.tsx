@@ -5,5 +5,5 @@ import '@fontsource/roboto/700.css';
 import { Typography } from '@mui/material';
 
 export default function Home() {
-  return <Typography variant="h1">{'Защищенный маршрут'}</Typography>;
+  return <Typography variant="h1">{'Clients'}</Typography>;
 }
